@@ -1,0 +1,2 @@
+public class CasoTeste09 {
+}
