@@ -3,7 +3,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import po.AdministratorPage;
 import po.HomePage;
 import po.LoginPage;
@@ -30,13 +34,16 @@ public class CasoTeste02 {
 
     @Test
     public void testCT02() throws InterruptedException {
-        driver.get("http://192.168.30.62/web/app.php/login");
+        driver.get(Setup.endereco);
         LoginPage login = new LoginPage(driver);
         AdministratorPage admin = new AdministratorPage(driver);
-        HomePage home = login.setUsername("teste").setPassword("utfpr").botaoLogin();
+        HomePage home = login.menuLogin();
+        home = login.setUsername("teste").setPassword("utfpr").botaoLogin();
         assertEquals("Desktop - Home", home.getTitle());
         home.btnAdmin();
-        driver.get("http://192.168.30.62/web/app.php/admin/open/user_management#/users");
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(home.getBtnUserManager())));
+        home.btnUserManager();
         admin.botaoAddUser();
         admin.setLastName("Silva").setFirstName("José")
                 .setEmail("josesilva@utfpr.edu.br")

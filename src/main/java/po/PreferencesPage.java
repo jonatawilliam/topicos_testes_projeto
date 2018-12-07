@@ -18,8 +18,6 @@ public class PreferencesPage extends BasePage {
     @FindBy(id = "edit-tools-btn")
     WebElement botaoEdit;
 
-    @FindBy(xpath = "//*[@id=\"top_bar\"]/div/div[2]/ul[1]/li[3]/a")
-    WebElement botaoAgenda;
 
     public PreferencesPage btnMenuBar() {
         botaoMenuBar.click();
@@ -27,7 +25,7 @@ public class PreferencesPage extends BasePage {
     }
 
     public PreferencesPage setItemAgenda() {
-        itemAgenda.isEnabled();
+        itemAgenda.click();
         return this;
     }
 
@@ -36,12 +34,11 @@ public class PreferencesPage extends BasePage {
         return this;
     }
 
-    public AgendaPage btnAgenda() {
-        botaoAgenda.click();
-        return new AgendaPage(driver);
-    }
-
     public String getTitle(){
         return driver.getTitle();
+    }
+
+    public String getItemAgenda() {
+        return "//*[@id=\"tools-table-body\"]/tr[5]/td[2]/input";
     }
 }

@@ -27,9 +27,10 @@ public class CasoTeste03 {
 
     @Test
     public void testCT03() {
-        driver.get("http://192.168.30.62/web/app.php/login");
+        driver.get(Setup.endereco);
         LoginPage login = new LoginPage(driver);
-        HomePage home = login.setUsername("josesilva").setPassword("123456").botaoLogin();
+        HomePage home = login.menuLogin();
+        home = login.setUsername("josesilva").setPassword("123456").botaoLogin();
         assertEquals("Desktop - Home", home.getTitle());
 
 

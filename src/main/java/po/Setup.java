@@ -12,15 +12,17 @@ public class Setup {
 
     public static WebDriver setup() {
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("headless");
+        //chromeOptions.addArguments("headless");
         chromeOptions.addArguments("window-size=1200x600");
         chromeOptions.addArguments("start-maximized");
 
         WebDriver webdriver = new ChromeDriver(chromeOptions);
 
-        webdriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        webdriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         return webdriver;
     }
+
+    public static String endereco = "http://172.16.253.188/web/app.php";
 
 }

@@ -82,4 +82,8 @@ public class AdministratorPage extends BasePage {
         return driver.getTitle();
     }
 
+    public String getBtnAddUser() {
+        return "//*[@id=\"wrap\"]/div[2]/main/header/nav/a";
+    }
+
 }

@@ -3,7 +3,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import po.*;
 import static junit.framework.TestCase.assertEquals;
 
@@ -28,17 +31,20 @@ public class CasoTeste10 {
 
     @Test
     public void testCT10() {
-        driver.get("http://192.168.30.62/web/app.php/login");
+        driver.get(Setup.endereco);
         LoginPage login = new LoginPage(driver);
         MyProfilePage my = new MyProfilePage(driver);
         AgendaPage agenda = new AgendaPage(driver);
-        HomePage home = login.setUsername("teste").setPassword("utfpr").botaoLogin();
+        HomePage home = login.menuLogin();
+        home = login.setUsername("teste").setPassword("utfpr").botaoLogin();
         assertEquals("Desktop - Home", home.getTitle());
-        home.btnAdmin();
-        driver.get("http://192.168.30.62/web/app.php/user/profile/teste.utfpr#/show/main");
+        home.btnMy();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(home.getBtnMy())));
+        home.btnProfile();
         my.btnEdit().setDescription("Usuário Administrador do Sistema");
-        my = my.btnSave();
-        my = my.btnCancel();
+        my.btnSave();
+        my.btnCancel();
         assertEquals("Usuário Administrador do Sistema", my.getDescription());
 
 

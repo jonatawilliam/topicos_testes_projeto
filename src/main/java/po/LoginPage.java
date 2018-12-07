@@ -18,6 +18,14 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"login-form\"]/button")
     WebElement botaoLogin;
 
+    @FindBy(xpath = "//*[@id=\"top_bar\"]/div/div[2]/ul/li[2]/a")
+    WebElement login;
+
+    public HomePage menuLogin() {
+        login.click();
+        return new HomePage(driver);
+    }
+
     public LoginPage setUsername(String name) {
         username.clear();
         username.sendKeys(name);

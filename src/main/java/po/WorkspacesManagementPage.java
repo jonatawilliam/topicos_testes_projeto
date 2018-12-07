@@ -24,6 +24,9 @@ public class WorkspacesManagementPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"wrap\"]/div/main/header/nav/span/button")
     WebElement botaoOk;
 
+    @FindBy(xpath = "//*[@id=\"wrap\"]/div/main/header/nav/span/a")
+    WebElement botaoX;
+
     public WorkspacesManagementPage btnAdd() {
         botaoAdd.click();
         return this;
@@ -49,6 +52,11 @@ public class WorkspacesManagementPage extends BasePage {
 
     public WorkspacesManagementPage btnOk() {
         botaoOk.click();
+        return this;
+    }
+
+    public WorkspacesManagementPage btnX() {
+        botaoX.click();
         return new WorkspacesManagementPage(driver);
     }
 

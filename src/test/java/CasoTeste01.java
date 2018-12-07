@@ -28,11 +28,11 @@ public class CasoTeste01 {
 
     @Test
     public void testCT01() {
-        driver.get("http://192.168.30.62/web/app.php/login");
+        driver.get(Setup.endereco);
         LoginPage login = new LoginPage(driver);
-        HomePage home = login.setUsername("teste").setPassword("utfpr").botaoLogin();
+        HomePage home = login.menuLogin();
+        home = login.setUsername("teste").setPassword("utfpr").botaoLogin();
         assertEquals("Desktop - Home", home.getTitle());
-
 
     }
 }
